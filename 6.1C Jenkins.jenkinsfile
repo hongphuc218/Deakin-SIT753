@@ -15,12 +15,14 @@ pipeline {
                 // Using Maven to run tests
             }
             post {
-                success{
-                        mail to: 'hongphuc218@gmail.com',
+                success {
+                    emailext(
+                        to: 'honghucp218@gmail.com',
                         subject: "Notification: Unit and Integration Tests ${currentBuild.result}",
                         body: """<p>Unit and Integration Tests completed with status: ${currentBuild.result}.</p>
-                                 <p>See attached logs for details.</p>""",
-                        attachLog: true,
+                                <p>See attached logs for details.</p>""",
+                        attachLog: true
+                    )
                 }
             }
         }
