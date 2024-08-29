@@ -27,36 +27,36 @@ pipeline {
             }
         }
 
-        stage('Code Analysis') {
-            steps {
-                echo 'Analyzing code...'
-                // Using SonarQube for code analysis
-            }
-        }
+        // stage('Code Analysis') {
+        //     steps {
+        //         echo 'Analyzing code...'
+        //         // Using SonarQube for code analysis
+        //     }
+        // }
 
-        stage('Security Scan') {
-            steps {
-                echo 'Performing security scan...'
-                // Using OWASP Dependency Check
-            }
-        }
+        // stage('Security Scan') {
+        //     steps {
+        //         echo 'Performing security scan...'
+        //         // Using OWASP Dependency Check
+        //     }
+        // }
 
-        stage('Deploy to Staging') {
-            steps {
-                echo 'Deploying to staging environment...'
-            }
-        }
+        // stage('Deploy to Staging') {
+        //     steps {
+        //         echo 'Deploying to staging environment...'
+        //     }
+        // }
 
-        stage('Integration Tests on Staging') {
-            steps {
-                echo 'Running integration tests on staging...'
-            }
-        }
+        // stage('Integration Tests on Staging') {
+        //     steps {
+        //         echo 'Running integration tests on staging...'
+        //     }
+        // }
 
-        stage('Deploy to Production') {
-            steps {
-                echo 'Deploying to production environment...'
-            }
-        }
+        // stage('Deploy to Production') {
+        //     steps {
+        //         echo 'Deploying to production environment...'
+        //     }
+        // }
     }
 }
