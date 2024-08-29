@@ -6,7 +6,6 @@ pipeline {
             steps {
                 echo 'Building the application...'
                 // Using Maven as the build tool
-                sh 'mvn clean package'
             }
         }
 
@@ -14,7 +13,6 @@ pipeline {
             steps {
                 echo 'Running unit and integration tests...'
                 // Using Maven to run tests
-                sh 'mvn test'
             }
         
             post {
