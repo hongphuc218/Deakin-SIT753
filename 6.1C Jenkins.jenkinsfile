@@ -18,7 +18,7 @@ pipeline {
                 always {
                     emailext(
                         to: 'hongphuc218@gmail.com',
-                        subject: "Notification: Unit and Integration Tests ${currentBuild.result}",
+                        subject: "Unit and Integration Tests ${currentBuild.result}",
                         body: """Unit and Integration Tests completed with status: ${currentBuild.result}.
                                  See attached logs for details.""",
                         attachLog: true
@@ -44,8 +44,8 @@ pipeline {
                 always {
                     emailext(
                         to: 'hongphuc218@gmail.com',
-                        subject: "Notification: Security Scan ${currentBuild.result}",
-                        body: """Unit and Integration Tests completed with status: ${currentBuild.result}.
+                        subject: "Security Scan ${currentBuild.result}",
+                        body: """Security Scan completed with status: ${currentBuild.result}.
                                  See attached logs for details.""",
                         attachLog: true
                     )
