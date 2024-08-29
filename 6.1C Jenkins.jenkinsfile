@@ -2,49 +2,75 @@ pipeline {
     agent any
 
     environment {
-        DIRECTORY_PATH = '/path/to/code'
-        TESTING_ENVIRONMENT = 'test-env'
-        PRODUCTION_ENVIRONMENT = 'PhucNguyen'
+
     }
 
     stages {
         stage('Build') {
             steps {
-                echo "Fetching the source code from the directory path specified by the environment variable: ${env.DIRECTORY_PATH}"
-                echo "Compiling the code and generating any necessary artifacts"
+                echo 'Building the application...'
+                // Using Maven as the build tool
+                sh 'mvn clean package'
             }
         }
 
-        stage('Test') {
+        stage('Unit and Integration Tests') {
             steps {
-                echo "Running unit tests"
-                echo "Running integration tests"
+                echo 'Running unit and integration tests...'
+                // Using Maven to run tests
+                sh 'mvn test'
+            }
+        
+            post {
+                always {
+                    emailext (
+                        subject: "Notification: Unit and Integration Tests ${currentBuild.result}",
+                        body: """<p>Unit and Integration Tests completed with status: ${currentBuild.result}.</p>
+                                 <p>See attached logs for details.</p>""",
+                        attachLog: true,
+                        to: 'hongphuc218@gmail.com'
+                    )
+                }
             }
         }
 
-        stage('Code Quality Check') {
+        stage('Code Analysis') {
             steps {
-                echo "Checking the quality of the code"
+                echo 'Analyzing code...'
+                // Using SonarQube for code analysis
+                sh 'mvn sonar:sonar'
             }
         }
 
-        stage('Deploy') {
+        stage('Security Scan') {
             steps {
-                echo "Deploying the application to the testing environment specified by the environment variable: ${env.TESTING_ENVIRONMENT}"
+                echo 'Performing security scan...'
+                // Using OWASP Dependency Check
+                sh 'mvn dependency-check:check'
             }
         }
 
-        stage('Approval') {
+        stage('Deploy to Staging') {
             steps {
-                echo "Waiting for approval"
-                sleep(time: 10, unit: 'SECONDS')
-                echo "Approval received"
+                echo 'Deploying to staging environment...'
+                // Example Command for Deploy to Staging
+                sh 'echo Deploying to AWS EC2 staging instance'
+            }
+        }
+
+        stage('Integration Tests on Staging') {
+            steps {
+                echo 'Running integration tests on staging...'
+                // Example Command for Integration Tests
+                sh 'echo Running integration tests on staging server'
             }
         }
 
         stage('Deploy to Production') {
             steps {
-                echo "Deploying the application to the production environment using the environment variable: ${env.PRODUCTION_ENVIRONMENT}"
+                echo 'Deploying to production environment...'
+                // Example Command for Deploy to Production
+                sh 'echo Deploying to AWS EC2 production instance'
             }
         }
     }
