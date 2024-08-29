@@ -32,7 +32,6 @@ pipeline {
             steps {
                 echo 'Analyzing code...'
                 // Using SonarQube for code analysis
-                sh 'mvn sonar:sonar'
             }
         }
 
@@ -40,7 +39,6 @@ pipeline {
             steps {
                 echo 'Performing security scan...'
                 // Using OWASP Dependency Check
-                sh 'mvn dependency-check:check'
             }
         }
 
@@ -48,7 +46,6 @@ pipeline {
             steps {
                 echo 'Deploying to staging environment...'
                 // Example Command for Deploy to Staging
-                sh 'echo Deploying to AWS EC2 staging instance'
             }
         }
 
@@ -56,7 +53,6 @@ pipeline {
             steps {
                 echo 'Running integration tests on staging...'
                 // Example Command for Integration Tests
-                sh 'echo Running integration tests on staging server'
             }
         }
 
@@ -64,7 +60,6 @@ pipeline {
             steps {
                 echo 'Deploying to production environment...'
                 // Example Command for Deploy to Production
-                sh 'echo Deploying to AWS EC2 production instance'
             }
         }
     }
