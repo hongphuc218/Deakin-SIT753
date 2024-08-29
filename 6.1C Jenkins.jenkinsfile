@@ -18,7 +18,7 @@ pipeline {
             post {
                 always {
                     
-                        mail to: 'hongphuc218@gmail.com',
+                        to: 'hongphuc218@gmail.com',
                         subject: "Notification: Unit and Integration Tests ${currentBuild.result}",
                         body: """<p>Unit and Integration Tests completed with status: ${currentBuild.result}.</p>
                                  <p>See attached logs for details.</p>""",
